@@ -66,18 +66,16 @@ const ExpenseTracker: React.FC<ExpenseTrackerProps> = ({
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Expense Tracker</h1>
           <p className="text-gray-600 dark:text-gray-300 mt-1">Track and manage your expenses with smart limits</p>
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-4 sm:mt-0 w-full sm:w-auto">
-          <div className="w-full sm:w-auto">
-            <DateSelector
-              selectedMonth={selectedMonth}
-              selectedYear={selectedYear}
-              onMonthChange={setSelectedMonth}
-              onYearChange={setSelectedYear}
-            />
-          </div>
+        <div className="flex flex-wrap items-center gap-3 mt-4 sm:mt-0">
+          <DateSelector
+            selectedMonth={selectedMonth}
+            selectedYear={selectedYear}
+            onMonthChange={setSelectedMonth}
+            onYearChange={setSelectedYear}
+          />
           <button
             onClick={handleExport}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
           >
             <ArrowUp className="h-4 w-4" />
             <span>Export</span>
