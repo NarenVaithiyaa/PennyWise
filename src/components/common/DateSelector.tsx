@@ -48,7 +48,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
       <select
         value={selectedMonth.split('-')[1]}
         onChange={(e) => handleMonthChange(e.target.value)}
-        className="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+        className="w-28 sm:w-36 px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
       >
         {months.map(month => (
           <option key={month.value} value={month.value}>
@@ -59,7 +59,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
       <select
         value={selectedYear}
         onChange={(e) => handleYearChange(parseInt(e.target.value))}
-        className="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+        className="w-24 sm:w-32 px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
       >
         {years.map(year => (
           <option key={year} value={year}>

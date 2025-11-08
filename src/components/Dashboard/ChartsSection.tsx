@@ -23,7 +23,7 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Analytics</h2>
-        <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1 w-full sm:w-auto">
+  <div className="inline-flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1 w-auto self-start sm:self-auto">
           <button
             onClick={() => setChartView('monthly')}
             className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
