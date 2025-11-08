@@ -1,8 +1,7 @@
-const CACHE_NAME = 'pennywise-v1.0.0';
+const CACHE_VERSION = '1.0.1';
+const CACHE_NAME = `pennywise-v${CACHE_VERSION}`;
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
@@ -15,7 +14,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+  return cache.addAll(urlsToCache);
       })
       .catch((error) => {
         console.log('Cache install failed:', error);
@@ -26,6 +25,13 @@ self.addEventListener('install', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  const requestUrl = new URL(event.request.url);
+
+  // Only handle same-origin GET requests to avoid caching extensions/devtools
+  if (event.request.method !== 'GET' || requestUrl.origin !== self.location.origin) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -45,7 +51,11 @@ self.addEventListener('fetch', (event) => {
 
           caches.open(CACHE_NAME)
             .then((cache) => {
-              cache.put(event.request, responseToCache);
+              if (requestUrl.origin === self.location.origin) {
+                cache.put(event.request, responseToCache).catch((error) => {
+                  console.warn('Cache put skipped:', error);
+                });
+              }
             });
 
           return response;

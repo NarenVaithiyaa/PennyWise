@@ -1,6 +1,11 @@
 // PWA utility functions
 
 export const registerServiceWorker = async (): Promise<void> => {
+  if (import.meta.env.DEV) {
+    console.info('Service worker registration skipped in development mode.');
+    return;
+  }
+
   if ('serviceWorker' in navigator) {
     try {
       const registration = await navigator.serviceWorker.register('/sw.js');
